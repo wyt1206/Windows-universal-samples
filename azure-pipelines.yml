@@ -23,7 +23,7 @@ steps:
     platform: $(buildPlatform)
     configuration: $(buildConfiguration)
     msbuildArguments: '/p:OutputPath=NonPackagedApp
-     /p:UapAppxPackageBuildMode=SideLoadOnly  /p:AppxBundle=Never /p:AppxPackageOutput=$(Build.ArtifactStagingDirectory)\MyApp.msix /p:AppxPackageSigningEnabled=false'
+     /p:Platform=x86 /p:Configuration=release /p:AppxPackageSigningEnabled=true /p:UapAppxPackageBuildMode=SideloadOnly /p:AppxBundle=Always /p:AppxPackageOutput=$(Build.ArtifactStagingDirectory)\MyApp.msix /p:AppxPackageSigningEnabled=false /p:AppxBundlePlatforms=x86 /t:Clean'
   displayName: 'Package the App'
 
 - task: DownloadSecureFile@1
