@@ -31,7 +31,8 @@ steps:
     configuration: $(buildConfiguration)
     msbuildArguments: '/p:Platform=x86 /p:Configuration=release /p:AppxPackageSigningEnabled=false /p:UapAppxPackageBuildMode=SideloadOnly /p:AppxBundle=Always /p:AppxPackageOutput=$(Build.ArtifactStagingDirectory)\MyApp.msix /p:AppxBundlePlatforms=x86 /t:Clean'
   displayName: 'Package the App'
-
+  enabled: false
+  
 - task: MSBuild@1
   inputs:
     solution: Samples\BackButton\cpp\SystemBack.sln
@@ -39,6 +40,21 @@ steps:
     configuration: $(buildConfiguration)
     msbuildArguments: '/p:Platform=x86 /p:Configuration=release /p:AppxPackageSigningEnabled=false /p:UapAppxPackageBuildMode=SideloadOnly /p:AppxBundle=Always /p:AppxPackageOutput=$(Build.ArtifactStagingDirectory)\MyApp.msix /p:AppxBundlePlatforms=x86'
   displayName: 'Package the App'
+  enabled: false
+
+- task: MsixPackaging@1
+  displayName: MSIX build and package
+  inputs:
+    outputPath: $(Build.ArtifactStagingDirectory)\MyApp.msix
+    solution: Samples/BackButton/cpp/SystemBack.sln
+    clean: true
+    generateBundle: true
+    buildConfiguration: release
+    buildPlatform: x64
+    buildForX64: false
+    manifestFile: Samples/BackButton/cpp/Package.appxmanifest
+    appPackageDistributionMode: SideloadOnly
+
 - task: DownloadSecureFile@1
   inputs:
     secureFile: 'SystemBack_TemporaryKey.pfx'
