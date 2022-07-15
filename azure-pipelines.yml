@@ -60,7 +60,7 @@ steps:
     secureFile: 'SystemBack_TemporaryKey.pfx'
   
 - script: '"C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool"
-    sign /fd SHA256 /f $(Agent.TempDirectory)/SystemBack_TemporaryKey.pfx /p 123456 $(Build.ArtifactStagingDirectory)\**\*.msix*'
+    sign /fd SHA256 /f $(Agent.TempDirectory)/SystemBack_TemporaryKey.pfx /p 123456 $(Build.ArtifactStagingDirectory)\MyApp.msix'
   displayName: 'Sign MSIX Package'
   
 - task: PublishBuildArtifacts@1
