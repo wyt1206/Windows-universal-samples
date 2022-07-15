@@ -54,7 +54,19 @@ steps:
     buildForX64: false
     manifestFile: Samples/BackButton/cpp/Package.appxmanifest
     appPackageDistributionMode: SideloadOnly
- 
+  enabled: false
+
+- task: MsixPackaging@1
+  displayName: 'MSIX build and package'
+  inputs:
+    outputPath: '$(Build.ArtifactStagingDirectory)\MyApp.msix'
+    solution: Samples/BackButton/cpp/SystemBack.sln
+    buildPlatform: x64
+    updateAppVersion: true
+    manifestFile: Samples/BackButton/cpp/Package.appxmanifest
+    appVersion: 2.0.0.0
+    appPackageDistributionMode: SideloadOnly
+    msbuildArchitecture: x64
 
 - task: DownloadSecureFile@1
   inputs:
