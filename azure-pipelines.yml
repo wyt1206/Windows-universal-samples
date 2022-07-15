@@ -73,7 +73,7 @@ steps:
   displayName: Sign MSIX package
   inputs:
     certificate: 2fb9f920-a11f-486a-bf28-0f09df9cf7f6
-    passwordVariable: $(PSW)
+    passwordVariable: '$(PSW)'
 
 - task: DownloadSecureFile@1
   inputs:
