@@ -16,12 +16,14 @@ steps:
      $manifest.Package.Identity.Version = "$(major).$(minor).$(build).$(revision)"    
      $manifest.save("Samples\BackButton\cpp\Package.appxmanifest")
   displayName: 'Version Package Manifest'
-  enabled: false 
+  
 
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: '-NoLogo -NoProfile -NonInteractive -ExecutionPolicy Unrestricted "& ''D:\a\_tasks\MsixPackaging_e8789f65-a0e2-472b-98ca-8cfd83ccc3c3\1.1.1\GetMSBuildPath.ps1''" -PreferredVersion latest -Architecture x86'
+  enabled: false 
+
 - task: MSBuild@1
   inputs:
     solution: Samples\BackButton\cpp\SystemBack.sln
