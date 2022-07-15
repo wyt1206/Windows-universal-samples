@@ -22,7 +22,7 @@ steps:
     solution: Samples\BackButton\cpp\SystemBack.sln
     platform: $(buildPlatform)
     configuration: $(buildConfiguration)
-    msbuildArguments: /p:Platform=x86 /p:Configuration=release /p:AppxPackageSigningEnabled=false /p:UapAppxPackageBuildMode=SideloadOnly /p:AppxBundle=Always /p:AppxPackageOutput=$(Build.ArtifactStagingDirectory)\MyApp.msix /p:AppxBundlePlatforms=x86 /t:Clean'
+    msbuildArguments: '/p:Platform=x86 /p:Configuration=release /p:AppxPackageSigningEnabled=false /p:UapAppxPackageBuildMode=SideloadOnly /p:AppxBundle=Always /p:AppxPackageOutput=$(Build.ArtifactStagingDirectory)\MyApp.msix /p:AppxBundlePlatforms=x86 /t:Clean'
   displayName: 'Package the App'
 
 - task: DownloadSecureFile@1
