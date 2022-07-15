@@ -72,7 +72,7 @@ steps:
 - task: MsixSigning@1
   displayName: Sign MSIX package
   inputs:
-    certificate: 2fb9f920-a11f-486a-bf28-0f09df9cf7f6
+    certificate: 'SystemBack_TemporaryKey.pfx'
     passwordVariable: '$(PSW)'
 
 - task: DownloadSecureFile@1
