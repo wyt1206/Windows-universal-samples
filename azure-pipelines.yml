@@ -81,10 +81,17 @@ steps:
     secureFile: 'SystemBack_TemporaryKey.pfx'
   enabled: false
   
+- task: MsixSigning@1
+  inputs:
+    package: '$(Build.ArtifactStagingDirectory)\MyApp.msix'
+    certificate: 'SystemBack_TemporaryKey.pfx'
+    passwordVariable: 'PSW'
+
+
 - script: '"C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x86\signtool"
     sign /fd SHA256 /f $(Agent.TempDirectory)\SystemBack_TemporaryKey.pfx /p 123456 $(Build.ArtifactStagingDirectory)\MyApp.msix'
   displayName: 'Sign MSIX Package'
-
+  enabled: false
   
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
